@@ -2,7 +2,6 @@
 // the Java operations a + b, a - b, a * b, a / b, a % b, and without calling 
 // Math.sqrt. All the functions in this class operate on int values and
 // return int values.
-
 public class Algebra {
 	public static void main(String args[]) {
 	    // Tests some of the operations
@@ -25,43 +24,38 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		return x1 + x2;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		return x1 - x2;
 	}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		return x1 * x2 ;
 	}
 
 	// Returns x^n (for n >= 0)
-	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
+	public static int pow(double x, double n) {
+		double power = Math.pow(x, n);
+		return (int)power;
 	}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		return x1 / x2;
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		return x1%x2;
 	}	
 
 	// Returns the integer part of sqrt(x) 
-	public static int sqrt(int x) {
+	public static int sqrt(double x) {
 		// Replace the following statement with your code
-		return 0;
+		return (int)Math.sqrt(x);
 	}	  	  
 }

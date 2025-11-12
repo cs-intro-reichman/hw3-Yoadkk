@@ -10,7 +10,7 @@ public class Algebra {
 	public static void main(String args[]) {
 	    // Tests some of the operation
 
-		System.out.println(div(100, 4));
+		System.out.println(sqrt(15));
 	}  
 
 	// Returns x1 + x2
@@ -174,6 +174,7 @@ public class Algebra {
 	public static int sqrt(int x) {
 		int g = 1;
 		double epsilon = -0.01;
+		double highEpsilon =1;
 
 		if (x == 0){
 			g = 0;
@@ -181,12 +182,14 @@ public class Algebra {
 		else {
 			while ((minus(times(g, g), x)) <= epsilon ){
 				g++;
-				if ((minus(times(g, g), x)) > g){
+				if (((minus(times(g, g), x)) > g )){
 					g--;
+					
 					break;
 				}
 
 			}
+			if (mod(x, g) > div(g, 2)) g--;
 		}
 		return g;
 	}	  	  

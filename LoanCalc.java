@@ -6,7 +6,8 @@ import org.w3c.dom.css.Counter;
 public class LoanCalc {
 	
 	static double epsilon = 0.001;  // Approximation accuracy
-	static int iterationCounter;    // Number of iterations 
+	static int iterationCounter;
+	static int iterationCounter2;    // Number of iterations 
 	
 	// Gets the loan data and computes the periodical payment.
     // Expects to get three command-line arguments: loan amount (double),
@@ -26,7 +27,7 @@ public class LoanCalc {
 		// Computes the periodical payment using bisection search
 		System.out.print("\nPeriodical payment, using bi-section search: ");
 		System.out.println((int) bisectionSolver(loan, rate, n, epsilon));
-		System.out.println("number of iterations: " + iterationCounter);
+		System.out.println("number of iterations: " + iterationCounter2);
 
 
 		//My tests
@@ -50,12 +51,12 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {
-		double payment = 10000;
+		double payment = loan/n;
 		while (endBalance(loan, rate, n, payment) + epsilon > 0){
-			payment += 0.1;
+			payment += 1;
+			iterationCounter++;
 
-
-			//iterationCounter++;
+			
 		}
 
 		return payment;
@@ -76,6 +77,7 @@ public class LoanCalc {
 
 		while (Math.abs((endBalance(loan, rate, n, payment)))  >= epsilon){
 			if ((endBalance(loan, rate, n, payment)) + epsilon >= 0){
+
 				L = payment;
 			}
 			else{
@@ -83,7 +85,7 @@ public class LoanCalc {
 			}
 			payment = ((L + H) /2);
 			//System.out.println(payment);
-			iterationCounter++;
+			iterationCounter2++;
 		}
 
 	

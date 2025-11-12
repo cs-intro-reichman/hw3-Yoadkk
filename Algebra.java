@@ -1,3 +1,6 @@
+
+import javax.print.attribute.standard.MediaSize;
+
 // Implements algebraic operations and the square root function without using 
 // the Java operations a + b, a - b, a * b, a / b, a % b, and without calling 
 // Math.sqrt. All the functions in this class operate on int values and
@@ -7,7 +10,7 @@ public class Algebra {
 	public static void main(String args[]) {
 	    // Tests some of the operation
 
-		System.out.println(pow(5, 0));
+		System.out.println(div(100, 4));
 	}  
 
 	// Returns x1 + x2
@@ -36,9 +39,51 @@ public class Algebra {
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
 		int times = x1;
-		for (int i = 1 ; i < x2 ; i++){
-			times = plus(times , x1);
-		}		
+		if (x1 == 0 || x2 == 0){
+		 times = 0;
+		}
+		else if (x1 > 0 && x2 > 0){
+			times = x1;
+			for (int i = 1 ; i < x2 ; i++){
+				times = plus(times , x1);
+			
+			}	
+		}
+		else if ((x1 < 0) && (x2 < 0)){
+			x2 = minus(0, x2);
+			x1 = minus(0, x1);
+			times = x1;
+
+			for (int i = 1 ; i < x2 ; i++){
+				times = plus(times , x1);
+			
+			}
+
+
+		} 
+
+		else if (((x1 < 0 ) && (x2 > 0)) || (x1 > 0 ) && (x2 < 0)) {
+			if (x1 < 0){
+				x1 = minus(0, x1);
+				times = x1;
+
+				for (int i = 1 ; i < x2 ; i++){
+					times = plus(times , x1);
+				}
+				
+				times = minus(0, times);
+
+				
+			}
+			else if (x1 > 0){
+				x2 = minus(0, x2);
+				for (int i = 1 ; i < x2 ; i++){
+					times = plus(times , x1);
+				}
+				times = minus(0, times);
+
+			}
+		}
 		return times;
 	}
 
@@ -47,14 +92,17 @@ public class Algebra {
 		int powerOf = x;
 		if (n == 0) powerOf = 1; 
 
-		else{
-		for (int i = 1 ; i < n ; i++){
-			powerOf = times(powerOf, x);
+		else if (n > 0){
+			for (int i = 1 ; i < n ; i++){
+				powerOf = times(powerOf, x);
+			}
+		}
+		else if (n < 0){
+			for (int i = 1 ; i > n ; i++){
 
-			
+			}
 
 		}
-	}
 		return powerOf;
 	}
 
@@ -62,16 +110,48 @@ public class Algebra {
 	public static int div(int x1, int x2) {
 		int divideBy = 0;
 		// -- 12/4 = 3
-		while (times(divideBy, x2) < x1){
-			divideBy ++;
-			if (times(divideBy, x2) > x1) {
-				divideBy--;
-				break;
+		if (x2 == 0 ) divideBy = 0;
+		else if (x1 < 0 && x2 < 0){
+			x1 = minus(0, x1);
+			x2 = minus(0, x2);
+			while (times(divideBy, x2) < x1){
+				divideBy ++;
+				if (times(divideBy, x2) > x1) {
+					divideBy--;
+					break;
+				}
+			}
+
+		}
+		else if ((x1 < 0 && x2 > 0)||(x1 > 0 && x2 < 0)){
+			if (x1 < 0){
+				x1 = minus(0, x1);
+				
+			}
+			else if (x1 > 0){
+				x2 = minus(0, x2);
+			}
+			while (times(divideBy, x2) < x1){
+				divideBy ++;
+				if (times(divideBy, x2) > x1) {
+					divideBy--;
+					break;
+				}
+			
+			}
+			divideBy = minus(0, divideBy);
+		}
+		else if (x1 > 0 && x2 >0){
+			while (times(divideBy, x2) < x1){
+				divideBy ++;
+				if (times(divideBy, x2) > x1) {
+					divideBy--;
+					break;
+				}
 			}
 		}
 		return divideBy;
 	}
-
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
 		int modulo = 0;
@@ -95,10 +175,17 @@ public class Algebra {
 		int g = 1;
 		double epsilon = -0.01;
 
-		while ((minus(times(g, g), x)) <= epsilon ){
-			g++;
-			if (true) {
-				
+		if (x == 0){
+			g = 0;
+		}
+		else {
+			while ((minus(times(g, g), x)) <= epsilon ){
+				g++;
+				if ((minus(times(g, g), x)) > g){
+					g--;
+					break;
+				}
+
 			}
 		}
 		return g;

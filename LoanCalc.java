@@ -7,7 +7,7 @@ public class LoanCalc {
 	
 	static double epsilon = 0.001;  // Approximation accuracy
 	static int iterationCounter;
-	static int iterationCounter2;    // Number of iterations 
+	static int iterationCounter2 = -1;    // Number of iterations 
 	
 	// Gets the loan data and computes the periodical payment.
     // Expects to get three command-line arguments: loan amount (double),

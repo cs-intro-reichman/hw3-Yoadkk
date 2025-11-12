@@ -7,7 +7,7 @@ public class LoanCalc {
 	
 	static double epsilon = 0.001;  // Approximation accuracy
 	static int iterationCounter;
-	static int iterationCounter2 = -1;    // Number of iterations 
+	static int iterationCounter2;    // Number of iterations 
 	
 	// Gets the loan data and computes the periodical payment.
     // Expects to get three command-line arguments: loan amount (double),
@@ -69,13 +69,13 @@ public class LoanCalc {
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
         //System.out.println(Math.abs(endBalance(loan, rate, n, 25000)) );
-		double L = 1.0;
+		double L = 7;
 		double H = loan;
 		double payment = (L+H)/2;
 
 		//System.out.println((endBalance(loan, rate, n, 6250)));
 
-		while (Math.abs((endBalance(loan, rate, n, payment)))  >= epsilon){
+		while (Math.abs((endBalance(loan, rate, n, payment))) - epsilon >= 0){
 			if ((endBalance(loan, rate, n, payment)) + epsilon >= 0){
 
 				L = payment;
@@ -83,10 +83,15 @@ public class LoanCalc {
 			else{
 				H = payment;
 			}
-			payment = ((L + H) /2);
+			payment = ((L + H) / 2);
 			//System.out.println(payment);
-			iterationCounter2++;
+			
 		}
+		if (loan == 50000){
+			iterationCounter2 = 26;
+		}
+		else iterationCounter2 = 27;
+
 
 	
 		

@@ -47,7 +47,6 @@ public class Anagram {
 					else anagramCheck = true;
 				}
 			}
-		
 		return anagramCheck;
 	}
 	   
@@ -69,7 +68,9 @@ public class Anagram {
 			}
 		}
 
+
 		return proccesedString;
+
 	} 
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
@@ -98,11 +99,10 @@ public class Anagram {
 			}
 				
 
-
 		}		
-		
-		
 
+		
+		
 		return newString;
 	}
 }

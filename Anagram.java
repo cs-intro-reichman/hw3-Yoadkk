@@ -3,7 +3,7 @@ public class Anagram {
 	public static void main(String args[]) {
 		// Tests the isAnagram function. 
 		
-		System.out.println(isAnagram("1001","1001"));  // true
+		System.out.println(isAnagram("",""));  // true
 		//System.out.println(isAnagram("William 1","I am a weakish speller")); // true
 		//System.out.println(isAnagram("Madam Curie","Radium came")); // true
 		//System.out.println(isAnagram("Tom Marvolo Riddle","I am Lord Voldemor")); // true
@@ -38,7 +38,7 @@ public class Anagram {
 		str2 = preProcess(str2);
 		int i = 0;
 		boolean anagramCheck = false;
-
+			if (str1 == str2) anagramCheck = true;
 			if (str1.length() == str2.length()){
 				while (i < str1.length()) {
 					if (str2.indexOf(str1.charAt(i)) == -1){

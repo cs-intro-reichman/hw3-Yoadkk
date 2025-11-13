@@ -1,12 +1,15 @@
 /** Functions for checking if a given string is an anagram. */
 public class Anagram {
 	public static void main(String args[]) {
-		// Tests the isAnagram function.
+		// Tests the isAnagram function. 
+		
 		System.out.println(isAnagram("silent","listen"));  // true
 		System.out.println(isAnagram("William Shakespeare","I am a weakish speller")); // true
 		System.out.println(isAnagram("Madam Curie","Radium came")); // true
 		System.out.println(isAnagram("Tom Marvolo Riddle","I am Lord Voldemort")); // true
 
+
+		
 		// Tests the preProcess function.
 		System.out.println(preProcess("What? No way!!!"));
 		
@@ -16,6 +19,8 @@ public class Anagram {
 		// Performs a stress test of randomAnagram 
 		String str = "1234567";
 		Boolean pass = true;
+		
+		
 		//// 10 can be changed to much larger values, like 1000
 		for (int i = 0; i < 10; i++) {
 			String randomAnagram = randomAnagram(str);
@@ -29,21 +34,75 @@ public class Anagram {
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
 		// Replace the following statement with your code
-		return false;
+		str1 = preProcess(str1);
+		str2 = preProcess(str2);
+		boolean anagramCheck = false;
+
+			if (str1.length() == str2.length()){
+				for (int i = 0; i < str1.length(); i++) {
+					if (str1.charAt(i) != str2.charAt((str2.indexOf(str1.charAt(i))))){
+						anagramCheck = false;
+						break;
+					}
+					else anagramCheck = true;
+				}
+			}
+		
+		return anagramCheck;
 	}
 	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
-		// Replace the following statement with your code
-		return "";
+		String alphabet = "abcdefghijklmnopqrstuvwxyz1234567890";
+		String trashCan = "";
+		String proccesedString = "";
+
+		for (int i = 0; i < (str.length()); i++) {
+			str = str.toLowerCase();
+			if (alphabet.indexOf(str.charAt(i)) == -1){
+				trashCan += str.charAt(i);
+			}
+			if (trashCan.indexOf(str.charAt(i)) == -1){
+				proccesedString += str.charAt(i);
+			}
+		}
+
+		return proccesedString;
 	} 
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
-	// characters as the given string, re-arranged in a random order. 
+	//  characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
-		// Replace the following statement with your code
-		return "";
+		str = preProcess(str);
+		String newString = "";
+		String valString = "";
+		int i = 0;
+		//yoad
+		while (i < (str.length())) {
+
+			double n = Math.floor(str.length()*Math.random());
+			int value = (int)n;
+			char strVal = (char)value;
+
+				
+			if (valString.indexOf(strVal) == -1){
+				newString += str.charAt(value);
+				valString += strVal;
+				i++;
+			}
+			
+			if (newString.length() == str.length()){
+				break;
+			}
+				
+
+
+		}		
+		
+		
+
+		return newString;
 	}
 }
